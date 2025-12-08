@@ -64,7 +64,7 @@ const Index = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <img src="/src/favicon/favicon.ico" alt="Brain Side Logo" className="w-12 h-12" />
             <h1 className="text-5xl font-semibold tracking-tight">
-              Brain Side
+              BrainSide
             </h1>
           </div>
           <p className="text-muted-foreground text-[19px] max-w-2xl mx-auto">
