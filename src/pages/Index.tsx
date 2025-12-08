@@ -5,7 +5,7 @@ import { RegionInfo } from '@/components/RegionInfo';
 import { ActiveRegionsList } from '@/components/ActiveRegionsList';
 import { BrainRegion, findActiveRegions, ActivityMapping } from '@/data/brainRegions';
 import { useAIBrainAnalysis } from '@/hooks/useAIBrainAnalysis';
-import { Brain, Sparkles, Loader2 } from 'lucide-react';
+import { Sparkles, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
@@ -19,10 +19,10 @@ const Index = () => {
   const handleSearch = useCallback(async (query: string) => {
     setCurrentQuery(query);
     setSelectedRegion(null);
-    
+
     // First try local matching
     const localResult = findActiveRegions(query);
-    
+
     // If no local matches, use AI analysis
     if (localResult.regions.length === 0) {
       const aiResult = await analyzeActivity(query);
@@ -62,7 +62,7 @@ const Index = () => {
       <header className="pt-12 pb-6 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Brain className="w-12 h-12 text-primary" />
+            <img src="/src/favicon/favicon.ico" alt="Brain Side Logo" className="w-12 h-12" />
             <h1 className="text-5xl font-semibold tracking-tight">
               Brain Side
             </h1>
@@ -103,7 +103,7 @@ const Index = () => {
               query={currentQuery}
             />
           )}
-          
+
           {/* Selected region info */}
           {selectedRegion && (
             <RegionInfo
@@ -112,7 +112,7 @@ const Index = () => {
               onClose={handleCloseInfo}
             />
           )}
-          
+
           {/* Loading state */}
           {isLoading && (
             <div className="text-center py-12 animate-fade-in-up">
@@ -124,7 +124,7 @@ const Index = () => {
               </div>
             </div>
           )}
-          
+
           {/* Empty state */}
           {activeRegions.length === 0 && !selectedRegion && !isLoading && (
             <div className="text-center py-12 animate-fade-in-up">
