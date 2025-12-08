@@ -62,7 +62,7 @@ const Index = () => {
       <header className="pt-12 pb-6 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <img src="/src/favicon/favicon.ico" alt="Brain Side Logo" className="w-12 h-12" />
+            <img src="/favicon.ico" alt="BrainSide Logo" className="w-12 h-12" />
             <h1 className="text-5xl font-semibold tracking-tight">
               BrainSide
             </h1>
