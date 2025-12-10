@@ -1,0 +1,4 @@
+project_id = "iyrqgaxtlfqhugvibcrk"
+
+[functions.analyze-brain-activity]
+verify_jwt = false
