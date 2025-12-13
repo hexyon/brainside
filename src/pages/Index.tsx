@@ -20,31 +20,23 @@ const Index = () => {
     setCurrentQuery(query);
     setSelectedRegion(null);
 
-    // First try local matching
-    const localResult = findActiveRegions(query);
-
-    // If no local matches, use AI analysis
-    if (localResult.regions.length === 0) {
-      const aiResult = await analyzeActivity(query);
-      if (aiResult.regions.length > 0) {
-        setActiveRegions(aiResult.regions);
-        setCurrentMapping(aiResult.mapping);
-        toast({
-          title: "AI Analysis Complete",
-          description: `Found ${aiResult.regions.length} related brain regions`,
-        });
-      } else {
-        setActiveRegions([]);
-        setCurrentMapping(null);
-        toast({
-          title: "No regions found",
-          description: "Try describing a specific activity or mental state",
-          variant: "destructive",
-        });
-      }
+    // Always use AI analysis for comprehensive results
+    const aiResult = await analyzeActivity(query);
+    if (aiResult.regions.length > 0) {
+      setActiveRegions(aiResult.regions);
+      setCurrentMapping(aiResult.mapping);
+      toast({
+        title: "AI Analysis Complete",
+        description: `Found ${aiResult.regions.length} related brain regions`,
+      });
     } else {
-      setActiveRegions(localResult.regions);
-      setCurrentMapping(localResult.mapping);
+      setActiveRegions([]);
+      setCurrentMapping(null);
+      toast({
+        title: "No regions found",
+        description: "Try describing a specific activity or mental state",
+        variant: "destructive",
+      });
     }
   }, [analyzeActivity, toast]);
 

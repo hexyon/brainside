@@ -30,7 +30,7 @@ serve(async (req) => {
 
   try {
     const { query } = await req.json();
-    
+
     if (!query || typeof query !== "string") {
       return new Response(
         JSON.stringify({ error: "Query is required" }),
@@ -45,17 +45,29 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are a neuroscience expert. Given a description of a person's activity, mental state, or behavior, identify which brain regions would be most active.
+    const systemPrompt = `You are a neuroscience expert analyzing brain activity. Your task is to identify ALL relevant brain regions that would be active during a described activity, mental state, or behavior.
 
 Available brain regions:
 ${brainRegions.map(r => `- ${r.id}: ${r.name} - ${r.description}`).join("\n")}
 
-Respond with a JSON object containing:
-1. "regions": an array of region IDs that would be active (choose 2-5 most relevant)
-2. "description": a brief explanation (1-2 sentences) of why these regions are involved
+IMPORTANT INSTRUCTIONS:
+1. Analyze the ENTIRE sentence carefully for ALL aspects: physical actions, emotions, cognitive processes, sensory input, and memory
+2. Consider both explicit and implicit brain activities (e.g., "terrified" = amygdala, "remember" = hippocampus, "running" = motor cortex + cerebellum)
+3. Don't limit yourself - include ALL relevant regions (typically 3-8 regions for complex activities)
+4. Look for:
+   - Physical movements → motor cortex, cerebellum, sensory cortex
+   - Emotions (fear, joy, anxiety, etc.) → amygdala, prefrontal cortex
+   - Memory (remembering, recalling, nostalgia) → hippocampus, temporal lobe
+   - Thinking/planning → prefrontal cortex
+   - Sensory input (seeing, hearing, feeling) → visual, auditory, sensory cortex
+   - Body regulation (heart rate, temperature) → hypothalamus, brainstem
 
-Example response format:
-{"regions": ["prefrontal", "amygdala", "hippocampus"], "description": "This activity engages the prefrontal cortex for decision-making, the amygdala for emotional processing, and the hippocampus for memory retrieval."}
+Respond with a JSON object containing:
+1. "regions": an array of ALL relevant region IDs (be comprehensive, don't skip regions)
+2. "description": a detailed explanation of why each major region is involved
+
+Example for "I was terrified while running":
+{"regions": ["motor", "cerebellum", "amygdala", "prefrontal", "hypothalamus"], "description": "Running activates motor cortex and cerebellum for movement coordination. Terror triggers the amygdala for fear processing, prefrontal cortex for emotional regulation, and hypothalamus for stress response (increased heart rate)."}
 
 Always respond with valid JSON only, no additional text.`;
 
@@ -94,7 +106,7 @@ Always respond with valid JSON only, no additional text.`;
 
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content;
-    
+
     console.log("AI response:", content);
 
     // Parse the JSON response from the AI
@@ -113,7 +125,7 @@ Always respond with valid JSON only, no additional text.`;
     }
 
     // Validate the regions
-    const validRegions = result.regions.filter((id: string) => 
+    const validRegions = result.regions.filter((id: string) =>
       brainRegions.some(r => r.id === id)
     );
 
