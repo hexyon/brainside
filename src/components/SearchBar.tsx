@@ -45,7 +45,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
           {query && (
             <button
               type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+              className="flex-shrink-0 p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
             >
               <img
                 src="/search.png"
