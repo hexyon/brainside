@@ -5,7 +5,7 @@ import { RegionInfo } from '@/components/RegionInfo';
 import { ActiveRegionsList } from '@/components/ActiveRegionsList';
 import { BrainRegion, findActiveRegions, ActivityMapping } from '@/data/brainRegions';
 import { useAIBrainAnalysis } from '@/hooks/useAIBrainAnalysis';
-import { Sparkles, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
@@ -118,7 +118,11 @@ const Index = () => {
           {activeRegions.length === 0 && !selectedRegion && !isLoading && (
             <div className="text-center py-12 animate-fade-in-up">
               <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-secondary/50">
-                <Sparkles className="w-5 h-5 text-primary" />
+                <img
+                  src="/search.png"
+                  alt="Search"
+                  className="w-5 h-5 object-contain"
+                />
                 <span className="text-[17px] text-muted-foreground">
                   Search for any activity to see brain regions light up
                 </span>

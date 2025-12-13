@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import { Search, Sparkles } from 'lucide-react';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -34,26 +33,30 @@ export function SearchBar({ onSearch }: SearchBarProps) {
   return (
     <div className="w-full space-y-4">
       <form onSubmit={handleSubmit} className="relative">
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+        <div className="editorial-search-container">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Describe an activity..."
-            className="apple-input pl-12 pr-12"
+            className="editorial-search-input"
+            aria-label="Search"
           />
           {query && (
             <button
               type="submit"
               className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
             >
-              <Sparkles className="w-5 h-5 text-primary" />
+              <img
+                src="/search.png"
+                alt="Search"
+                className="w-5 h-5 object-contain"
+              />
             </button>
           )}
         </div>
       </form>
-      
+
       {/* Suggestions */}
       <div className="flex flex-wrap gap-2">
         {suggestions.map((suggestion) => (
