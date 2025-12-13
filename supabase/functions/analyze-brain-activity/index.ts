@@ -52,8 +52,8 @@ ${brainRegions.map(r => `- ${r.id}: ${r.name} - ${r.description}`).join("\n")}
 
 IMPORTANT INSTRUCTIONS:
 1. Analyze the ENTIRE sentence carefully for ALL aspects: physical actions, emotions, cognitive processes, sensory input, and memory
-2. Consider both explicit and implicit brain activities (e.g., "terrified" = amygdala, "remember" = hippocampus, "running" = motor cortex + cerebellum)
-3. Don't limit yourself - include ALL relevant regions (typically 3-8 regions for complex activities)
+2. Consider both explicit and implicit brain activities (e.g., "focused" = prefrontal cortex, "remember" = hippocampus, "playing piano" = motor cortex + cerebellum + auditory cortex)
+3. Don't limit yourself - include ALL relevant regions (typically 3-9 regions for complex activities)
 4. Look for:
    - Physical movements → motor cortex, cerebellum, sensory cortex
    - Emotions (fear, joy, anxiety, etc.) → amygdala, prefrontal cortex
@@ -66,8 +66,8 @@ Respond with a JSON object containing:
 1. "regions": an array of ALL relevant region IDs (be comprehensive, don't skip regions)
 2. "description": a detailed explanation of why each major region is involved
 
-Example for "I was terrified while running":
-{"regions": ["motor", "cerebellum", "amygdala", "prefrontal", "hypothalamus"], "description": "Running activates motor cortex and cerebellum for movement coordination. Terror triggers the amygdala for fear processing, prefrontal cortex for emotional regulation, and hypothalamus for stress response (increased heart rate)."}
+Example for "I was focused while playing piano":
+{"regions": ["motor", "cerebellum", "auditory", "prefrontal", "sensory"], "description": "Playing piano activates motor cortex for finger movements and cerebellum for precise coordination and timing. The auditory cortex processes the music being played, while the prefrontal cortex maintains focus and attention. The somatosensory cortex processes the tactile feedback from the keys."}
 
 Always respond with valid JSON only, no additional text.`;
 
