@@ -243,15 +243,33 @@ export const activityMappings: ActivityMapping[] = [
 
 export function findActiveRegions(query: string): { regions: BrainRegion[]; mapping: ActivityMapping | null } {
   const lowerQuery = query.toLowerCase();
+  const matchedRegionIds = new Set<string>();
+  const matchedMappings: ActivityMapping[] = [];
 
-  // First check activity mappings for complex activities
+  // Collect all matching activity mappings
   for (const mapping of activityMappings) {
     if (mapping.keywords.some(keyword => lowerQuery.includes(keyword))) {
-      const activeRegions = brainRegions.filter(region =>
-        mapping.regions.includes(region.id)
-      );
-      return { regions: activeRegions, mapping };
+      matchedMappings.push(mapping);
+      mapping.regions.forEach(regionId => matchedRegionIds.add(regionId));
     }
+  }
+
+  // If we found matches from activity mappings, return those
+  if (matchedRegionIds.size > 0) {
+    const activeRegions = brainRegions.filter(region =>
+      matchedRegionIds.has(region.id)
+    );
+
+    // Create a combined mapping if multiple mappings matched
+    const combinedMapping: ActivityMapping = {
+      keywords: matchedMappings.flatMap(m => m.keywords),
+      regions: Array.from(matchedRegionIds),
+      description: matchedMappings.length === 1
+        ? matchedMappings[0].description
+        : `This activity engages multiple brain systems: ${matchedMappings.map(m => m.description).join(' ')}`
+    };
+
+    return { regions: activeRegions, mapping: combinedMapping };
   }
 
   // Fall back to checking individual region functions
