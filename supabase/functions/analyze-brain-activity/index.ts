@@ -18,6 +18,9 @@ const brainRegions = [
   { id: "cerebellum", name: "Cerebellum", description: "Coordination, balance, motor learning, precise timing" },
   { id: "thalamus", name: "Thalamus", description: "Relay station for sensory signals, consciousness, sleep, alertness" },
   { id: "hypothalamus", name: "Hypothalamus", description: "Regulating hunger, thirst, temperature, sleep cycles, hormones" },
+  { id: "brainstem", name: "Brain Stem", description: "Controls vital life functions including breathing, heart rate, blood pressure, consciousness, and sleep-wake cycles" },
+  { id: "parietal", name: "Parietal Lobe", description: "Processes spatial information, integrates sensory input, crucial for navigation, mathematical reasoning, and spatial awareness" },
+  { id: "temporal", name: "Temporal Lobe", description: "Essential for processing auditory information, memory formation, language comprehension, face recognition, and emotional processing" },
 ];
 
 serve(async (req) => {
