@@ -74,22 +74,25 @@
 
   h1 {
     @apply text-4xl font-semibold tracking-tight;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(4rem, 10vw, 6rem);
     letter-spacing: -0.022em;
   }
 
   h2 {
     @apply text-3xl font-semibold tracking-tight;
+    font-size: 3rem;
     letter-spacing: -0.022em;
   }
 
   h3 {
     @apply text-2xl font-semibold tracking-tight;
+    font-size: 2rem;
     letter-spacing: -0.022em;
   }
 
   p {
-    @apply text-[17px] leading-relaxed;
+    @apply leading-relaxed;
+    font-size: 34px;
     letter-spacing: -0.022em;
   }
 }
@@ -100,30 +103,34 @@
   }
 
   .apple-button {
-    @apply px-6 py-3 rounded-xl font-medium text-[17px] transition-all duration-200;
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-200;
     @apply bg-primary text-primary-foreground;
     @apply hover:opacity-90 active:scale-[0.98];
+    font-size: 34px;
     letter-spacing: -0.022em;
   }
 
   .apple-button-secondary {
-    @apply px-6 py-3 rounded-xl font-medium text-[17px] transition-all duration-200;
+    @apply px-6 py-3 rounded-xl font-medium transition-all duration-200;
     @apply bg-secondary text-secondary-foreground;
     @apply hover:bg-secondary/80 active:scale-[0.98];
+    font-size: 34px;
     letter-spacing: -0.022em;
   }
 
   .apple-input {
     @apply w-full px-4 py-3 rounded-xl bg-secondary/50 border border-border;
-    @apply text-[17px] placeholder:text-muted-foreground;
+    @apply placeholder:text-muted-foreground;
     @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary;
     @apply transition-all duration-200;
+    font-size: 34px;
     letter-spacing: -0.022em;
   }
 
   .apple-badge {
     @apply inline-flex items-center px-3 py-1 rounded-full;
-    @apply bg-secondary text-secondary-foreground text-[13px] font-medium;
+    @apply bg-secondary text-secondary-foreground font-medium;
+    font-size: 26px;
     letter-spacing: -0.016em;
   }
 
@@ -169,7 +176,7 @@
 
   .editorial-search-input {
     @apply flex-1 bg-transparent border-none outline-none;
-    font-size: 1.125rem;
+    font-size: 2.25rem;
     color: hsl(var(--foreground));
     font-weight: 400;
     transition: color 1s ease;
